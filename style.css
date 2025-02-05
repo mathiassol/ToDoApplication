@@ -3,71 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-body {
+#container {
     display: flex;
+    width: 100%;
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
 }
-
-.sideBar {
-    width: 20%;
-    background: #333;
-    color: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+#left_panel {
+    flex-grow: 1;
+    background-color: lightblue;
 }
-
-.sidebarHeader {
-    width: 100%;
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-    font-size: 1.2rem;
-    font-weight: bold;
+#drag {
+    width: 5px;
+    cursor: ew-resize;
+    background-color: gray;
 }
-
-.sidebarHeader button {
-    background: white;
-    color: #333;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidebar-header button:hover {
-    background: #ddd;
-}
-
-.mainContent {
-    width: 80%;
-    background: #f4f4f4;
-    padding: 20px;
-}
-.separator {
-    background-color: #fff;
-    width: 90%;
-    height: 1px;
-}
-.sidebarHide {
-    width: 100%;
-
-}
-.sidebarHide button {
-    background: transparent;
-    color: #fff;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-
-
+#right_panel {
+    width: 200px;
+    background-color: lightcoral;
 }
