@@ -40,7 +40,7 @@ function stopResize() {
 }
 updatePanelSize(getStoredPosition());
 
-drag.addEventListener("mousedown", (e) => {
+drag.addEventListener("mousedown", () => {
     isResizing = true;
     document.addEventListener("mousemove", resize);
     document.addEventListener("mouseup", stopResize);
