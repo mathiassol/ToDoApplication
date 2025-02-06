@@ -6,71 +6,45 @@
     <title>Sidebar Layout</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="burger.css">
 </head>
 <body>
 <div id="container">
     <div id="left_panel">
         <h1>ToDo List</h1>
-        <div onclick="" class="item" id="newFile">New File</div>
+        <div class="item" id="newFile">New File</div>
         <div class="separator"></div>
-        <ul class="custom-scroll">
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
-            <li class="item">t</li>
+        <ul id="files">
+
         </ul>
     </div>
     <div id="drag"></div>
-    <div id="right_panel"></div>
+    <div id="right_panel">
+        <div class="editorToDo">
+
+        </div>
+
+    </div>
+</div>
+<div class="overlay" id="overlay"></div>
+<div class="modal" id="fileModal">
+    <p>Enter file name:</p>
+    <input type="text" id="fileName">
+    <br><br>
+    <button id="okButton">OK</button>
+    <button id="cancelButton">Cancel</button>
 </div>
 
+<div class="overlay" id="overlay2"></div>
+<div class="modal" id="fileModal2">
+    <p>Enter file name:</p>
+    <input type="text" id="fileName2">
+    <br><br>
+    <button id="okButton2">OK</button>
+    <button id="cancelButton2">Cancel</button>
+</div>
+
+<script src="fileManager.js"></script>
 <script src="resizeController.js"></script>
 </body>
 </html>

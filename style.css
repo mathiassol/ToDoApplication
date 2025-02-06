@@ -1,78 +1,211 @@
+:root {
+    /* Color variables */
+    --primary-color: #0288d1; /* A slightly deeper blue for a stronger primary color */
+    --secondary-color: #81d4fa; /* A softer, brighter light blue for a fresh feel */
+    --background-color: #374853; /* A soft, neutral light background for a cleaner look */
+    --accent-color: #bbdefb; /* Accent color for buttons remains subtle and inviting */
+    --hover-color: #4fa3f7; /* Slightly darker hover state color to maintain legibility */
+    --shadow-color: rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    --light-shadow: rgba(255, 255, 255, 0.3); /* Lighter shadow for highlights to feel airier */
+    --modal-background: #ffffff; /* Crisp white modal background to enhance contrast */
+    --button-background: #90caf9; /* Lighter, more modern button color */
+    --button-hover: #64b5f6; /* Soft blue hover to stand out without being too sharp */
+    --button-active: #42a5f5; /* Active state with a bit more intensity for focus */
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: poppins, sans-serif;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
+    font-family: 'Poppins', sans-serif;
     user-select: none;
 }
+
 #container {
     display: flex;
     width: 100%;
     height: 100vh;
+    background-color: #f5f5f5;
 }
+
 #left_panel {
-    flex-direction: column;
-    justify-items: center;
-    flex-grow: 1;
-    background-color: lightblue;
-}
-#left_panel H1 {
-    font-weight: normal;
-    font-size: 2.5vw;
-    text-align: center;
-    white-space: nowrap;
-}
-#drag {
-    width: 5px;
-    cursor: ew-resize;
-    background-color: gray;
-}
-#right_panel {
-    width: 200px;
-    background-color: lightcoral;
-}
-.separator{
-    width: 95%;
-    height: 2px;
-    background-color: #acacac;
-}
-#newFile{
-    cursor: pointer;
-}
-.item{
-    font-size: 1.3vw;
     display: flex;
-    width: 98%;
-    height: 8%;
-    background-color: transparent;
-    border-radius: 12px;
-    margin: 2px;
-    padding-left: 5%;
-    transition: 70ms ease;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    background: var(--background-color);
+    padding: 15px;
+    border-right: 3px solid #b0bec5;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#left_panel h1 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.separator {
+    width: 90%;
+    height: 2px;
+    background: #b0bec5;
+    margin: 10px 0;
+    border-radius: 1px;
+}
+
+#newFile {
+    cursor: pointer;
+    width: 90%;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    background: var(--accent-color);
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+#newFile:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+}
+.item {
+    font-size: 1.1rem;
+    display: flex;
+    width: 90%;
+    height: 45px;
+    background: var(--background-color);
+    border-radius: 10px;
+    margin: 5px 0;
+    padding-left: 15px;
     align-items: center;
     font-weight: bold;
-    letter-spacing: .13rem;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none;
-}
-.item:hover{
-    background-color: lightcoral;
-    opacity: 0.7;
-}
-.item:active{
-    background-color: #fff;
-}
-ul {
+    letter-spacing: 0.05rem;
+    transition: 0.2s ease-in-out;
+    color: var(--primary-color);
     position: relative;
+    justify-content: space-between;
+}
+
+.item:hover {
+    background: var(--secondary-color);
+    transform: translateX(5px);
+    z-index: 1000;
+}
+
+ul {
+    width: 100%;
     overflow-y: auto;
     padding: 10px;
     list-style: none;
-    background-color: #fff;
-    width: 100%;
-    height:  87%;
+    height: 100%;
     scrollbar-width: thin;
-    transition: 0.3s ease-in-out;
+    scrollbar-color: var(--secondary-color) var(--background-color);
+}
+
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 10px;
+}
+
+#drag {
+    width: 5px;
+    cursor: ew-resize;
+    background: #b0bec5;
+}
+
+#right_panel {
+    flex-grow: 1;
+    background: #ffcdd2;
+    padding: 15px;
+}
+
+.editorToDo {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blur {
+    filter: blur(1px);
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--modal-background);
+    padding: 20px;
+    display: none;
+    z-index: 1000;
+    border-radius: 12px;
+    text-align: center;
+    width: 300px;
+}
+
+.modal p {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.modal input {
+    width: 90%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    background: #f5f5f5;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.modal input:focus {
+    border-color: var(--secondary-color);
+    background: white;
+}
+
+.modal button {
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    margin: 10px 5px 0;
+    background: var(--button-background);
+    color: var(--primary-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.modal button:hover {
+    background: var(--button-hover);
+    transform: scale(1.05);
+}
+
+.modal button:active {
+    background: var(--button-active);
+    transform: scale(0.98);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 999;
 }
