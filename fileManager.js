@@ -8,6 +8,10 @@ document.getElementById("cancelButton").addEventListener("click", function() {
     document.getElementById("fileModal").style.display = "none";
 });
 
+function hasLetters(str) {
+    return /[a-zA-Z]/.test(str);
+}
+
 document.getElementById("okButton").addEventListener("click", function() {
     let fileName = document.getElementById("fileName").value.trim();
     if (fileName) {
@@ -56,19 +60,30 @@ document.getElementById("okButton").addEventListener("click", function() {
 
         // Rename functionality
         li.querySelector(".renameBtn").addEventListener("click", function() {
-            document.getElementById("overlay").style.display = "block";
-            document.getElementById("fileModal").style.display = "block";
+            document.getElementById("overlay2").style.display = "block";
+            document.getElementById("fileModal2").style.display = "block";
+        });
+        document.getElementById("okButton2").addEventListener("click", function() {
+            let newName = document.getElementById("fileName2").value.trim();
+            if (hasLetters(newName) === false) {
+
+            } else {
+                if (newName && newName.trim()) {
+                    li.querySelector(".file-name").textContent = newName.trim();
+                    fileName = newName.trim(); // Update stored name
+                    document.getElementById("overlay2").style.display = "none";
+                    document.getElementById("fileModal2").style.display = "none";
+                }
+            }
+
+        })
+
+        document.getElementById("cancelButton2").addEventListener("click", function() {
+            document.getElementById("overlay2").style.display = "none";
+            document.getElementById("fileModal2").style.display = "none";
         });
 
-        document.getElementById("cancelButton").addEventListener("click", function() {
-            document.getElementById("overlay").style.display = "none";
-            document.getElementById("fileModal").style.display = "none";
-        });
 
-        if (newName && newName.trim()) {
-            li.querySelector(".file-name").textContent = newName.trim();
-            fileName = newName.trim(); // Update stored name
-        }
 
         document.getElementById("files").appendChild(li);
     }
