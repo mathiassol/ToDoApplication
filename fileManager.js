@@ -6,15 +6,21 @@ document.getElementById("newFile").addEventListener("click", function() {
 document.getElementById("cancelButton").addEventListener("click", function() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("fileModal").style.display = "none";
+    document.getElementById("fileName").value = "";
 });
 
-function hasLetters(str) {
-    return /[a-zA-Z]/.test(str);
+function hasNonSpaceCharacter(str) {
+    return /\S/.test(str);
 }
 
 document.getElementById("okButton").addEventListener("click", function() {
     let fileName = document.getElementById("fileName").value.trim();
-    if (fileName) {
+    if (hasNonSpaceCharacter(fileName) === false) {
+        document.getElementById("nameText").textContent = "Name Requierd";
+        document.getElementById("fileName").value = "";
+    } else {
+        document.getElementById("nameText").textContent = "Enter file name:";
+        document.getElementById("fileName").value = "";
         let li = document.createElement("li");
         li.setAttribute("class", "item");
 
@@ -53,22 +59,23 @@ document.getElementById("okButton").addEventListener("click", function() {
             </label>
         `;
 
-        // Delete functionality
         li.querySelector(".deleteBtn").addEventListener("click", function() {
             li.remove();
         });
 
-        // Rename functionality
         li.querySelector(".renameBtn").addEventListener("click", function() {
             document.getElementById("overlay2").style.display = "block";
             document.getElementById("fileModal2").style.display = "block";
         });
         document.getElementById("okButton2").addEventListener("click", function() {
             let newName = document.getElementById("fileName2").value.trim();
-            if (hasLetters(newName) === false) {
-
+            if (hasNonSpaceCharacter(newName) === false) {
+                document.getElementById("nameText2").textContent = "Name Requierd";
+                document.getElementById("fileName2").value = "";
             } else {
                 if (newName && newName.trim()) {
+                    document.getElementById("nameText2").textContent = "Enter file name:";
+                    document.getElementById("fileName2").value = "";
                     li.querySelector(".file-name").textContent = newName.trim();
                     fileName = newName.trim(); // Update stored name
                     document.getElementById("overlay2").style.display = "none";
@@ -81,14 +88,15 @@ document.getElementById("okButton").addEventListener("click", function() {
         document.getElementById("cancelButton2").addEventListener("click", function() {
             document.getElementById("overlay2").style.display = "none";
             document.getElementById("fileModal2").style.display = "none";
+            document.getElementById("fileName2").value = "";
         });
 
 
 
         document.getElementById("files").appendChild(li);
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("fileModal").style.display = "none";
     }
 
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("fileModal").style.display = "none";
     document.getElementById("fileName").value = "";
 });
