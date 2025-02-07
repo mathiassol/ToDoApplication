@@ -2,17 +2,14 @@ document.getElementById("newFile").addEventListener("click", function() {
     document.getElementById("overlay").style.display = "block";
     document.getElementById("fileModal").style.display = "block";
 });
-
 document.getElementById("cancelButton").addEventListener("click", function() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("fileModal").style.display = "none";
     document.getElementById("fileName").value = "";
 });
-
 function hasNonSpaceCharacter(str) {
     return /\S/.test(str);
 }
-
 document.getElementById("okButton").addEventListener("click", function() {
     let fileName = document.getElementById("fileName").value.trim();
     if (hasNonSpaceCharacter(fileName) === false) {
@@ -58,32 +55,33 @@ document.getElementById("okButton").addEventListener("click", function() {
                 </nav>
             </label>
         `;
-
         li.querySelector(".deleteBtn").addEventListener("click", function() {
             li.remove();
         });
-
         li.querySelector(".renameBtn").addEventListener("click", function() {
+            const currentLi = li;
+
             document.getElementById("overlay2").style.display = "block";
             document.getElementById("fileModal2").style.display = "block";
-        });
-        document.getElementById("okButton2").addEventListener("click", function() {
-            let newName = document.getElementById("fileName2").value.trim();
-            if (hasNonSpaceCharacter(newName) === false) {
-                document.getElementById("nameText2").textContent = "Name Requierd";
-                document.getElementById("fileName2").value = "";
-            } else {
-                if (newName && newName.trim()) {
-                    document.getElementById("nameText2").textContent = "Enter file name:";
+            document.getElementById("fileName2").value = currentLi.querySelector(".file-name").textContent;
+
+            document.getElementById("okButton2").addEventListener("click", function() {
+                let newName = document.getElementById("fileName2").value.trim();
+                if (hasNonSpaceCharacter(newName) === false) {
+                    document.getElementById("nameText2").textContent = "Name Required";
                     document.getElementById("fileName2").value = "";
-                    li.querySelector(".file-name").textContent = newName.trim();
-                    fileName = newName.trim(); // Update stored name
+                } else {
+                    currentLi.querySelector(".file-name").textContent = newName.trim();
                     document.getElementById("overlay2").style.display = "none";
                     document.getElementById("fileModal2").style.display = "none";
                 }
-            }
-
-        })
+            });
+            document.getElementById("cancelButton2").addEventListener("click", function() {
+                document.getElementById("overlay2").style.display = "none";
+                document.getElementById("fileModal2").style.display = "none";
+                document.getElementById("fileName2").value = "";
+            });
+        });
 
         document.getElementById("cancelButton2").addEventListener("click", function() {
             document.getElementById("overlay2").style.display = "none";

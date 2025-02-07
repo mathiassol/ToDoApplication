@@ -1,32 +1,36 @@
 :root {
-    /* Color variables */
-    --primary-color: #0288d1; /* A slightly deeper blue for a stronger primary color */
-    --secondary-color: #81d4fa; /* A softer, brighter light blue for a fresh feel */
-    --background-color: #374853; /* A soft, neutral light background for a cleaner look */
-    --accent-color: #bbdefb; /* Accent color for buttons remains subtle and inviting */
-    --hover-color: #4fa3f7; /* Slightly darker hover state color to maintain legibility */
-    --shadow-color: rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
-    --light-shadow: rgba(255, 255, 255, 0.3); /* Lighter shadow for highlights to feel airier */
-    --modal-background: #ffffff; /* Crisp white modal background to enhance contrast */
-    --button-background: #90caf9; /* Lighter, more modern button color */
-    --button-hover: #64b5f6; /* Soft blue hover to stand out without being too sharp */
-    --button-active: #42a5f5; /* Active state with a bit more intensity for focus */
+    --primary-color: #0078D4; /* Fluent Design blue */
+    --secondary-color: #005A9E; /* Darker blue for hover states */
+    --background-color: #F3F3F3; /* Light grey background */
+    --panel-color: rgba(255, 255, 255, 0.8); /* Acrylic-like panel */
+    --border-color: #D2D2D2; /* Soft border color */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadows */
+    --button-background: #0078D4;
+    --button-hover: #005A9E;
+    --button-active: #004377;
+    --text-color: #212121; /* Dark gray for contrast */
 }
-
-
+#drag {
+    width: 5px;
+    cursor: ew-resize;
+    background: #b0bec5;
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: Menlo, Roboto Mono, monospace;
     user-select: none;
+}
+
+body {
+    background-color: var(--background-color);
 }
 
 #container {
     display: flex;
     width: 100%;
     height: 100vh;
-    background-color: #f5f5f5;
 }
 
 #left_panel {
@@ -34,16 +38,16 @@
     flex-direction: column;
     align-items: center;
     width: 250px;
-    background: var(--background-color);
+    background: var(--panel-color);
     padding: 15px;
-    border-right: 3px solid #b0bec5;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid var(--border-color);
+    backdrop-filter: blur(10px); /* Acrylic effect */
+    box-shadow: 4px 0 10px var(--shadow-color);
 }
 
 #left_panel h1 {
     font-weight: 600;
-    font-size: 1.8rem;
-    text-align: center;
+    font-size: 1.5rem;
     color: var(--primary-color);
     margin-bottom: 20px;
 }
@@ -51,9 +55,8 @@
 .separator {
     width: 90%;
     height: 2px;
-    background: #b0bec5;
+    background: var(--border-color);
     margin: 10px 0;
-    border-radius: 1px;
 }
 
 #newFile {
@@ -61,40 +64,38 @@
     width: 90%;
     padding: 10px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    color: var(--primary-color);
-    background: var(--accent-color);
-    border-radius: 8px;
+    color: white;
+    background: var(--button-background);
+    border-radius: 6px;
     transition: all 0.2s ease-in-out;
 }
 
 #newFile:hover {
-    background: var(--secondary-color);
-    transform: scale(1.05);
+    background: var(--button-hover);
 }
+
 .item {
-    font-size: 1.1rem;
     display: flex;
+    align-items: center;
     width: 90%;
     height: 45px;
-    background: var(--background-color);
-    border-radius: 10px;
+    background: white;
+    border-radius: 8px;
     margin: 5px 0;
     padding-left: 15px;
-    align-items: center;
     font-weight: bold;
-    letter-spacing: 0.05rem;
     transition: 0.2s ease-in-out;
-    color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
     position: relative;
     justify-content: space-between;
 }
 
 .item:hover {
-    background: var(--secondary-color);
-    transform: translateX(5px);
-    z-index: 1000;
+    background: var(--primary-color);
+    color: white;
 }
 
 ul {
@@ -103,28 +104,11 @@ ul {
     padding: 10px;
     list-style: none;
     height: 100%;
-    scrollbar-width: thin;
-    scrollbar-color: var(--secondary-color) var(--background-color);
-}
-
-ul::-webkit-scrollbar {
-    width: 6px;
-}
-
-ul::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-    border-radius: 10px;
-}
-
-#drag {
-    width: 5px;
-    cursor: ew-resize;
-    background: #b0bec5;
 }
 
 #right_panel {
     flex-grow: 1;
-    background: #ffcdd2;
+    background: white;
     padding: 15px;
 }
 
@@ -132,12 +116,8 @@ ul::-webkit-scrollbar-thumb {
     width: 100%;
     height: 100%;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.blur {
-    filter: blur(1px);
+    border-radius: 6px;
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .modal {
@@ -145,67 +125,40 @@ ul::-webkit-scrollbar-thumb {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--modal-background);
+    background: white;
     padding: 20px;
     display: none;
-    z-index: 1000;
-    border-radius: 12px;
+    border-radius: 8px;
     text-align: center;
     width: 300px;
-}
-
-.modal p {
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
+    box-shadow: 0 4px 10px var(--shadow-color);
 }
 
 .modal input {
     width: 90%;
     padding: 10px;
     font-size: 1rem;
-    border: 2px solid var(--accent-color);
-    border-radius: 8px;
-    background: #f5f5f5;
-    outline: none;
-    transition: all 0.2s ease-in-out;
-}
-
-.modal input:focus {
-    border-color: var(--secondary-color);
-    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: #F9F9F9;
 }
 
 .modal button {
     cursor: pointer;
     padding: 10px 15px;
     font-size: 1rem;
-    font-weight: bold;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     margin: 10px 5px 0;
     background: var(--button-background);
-    color: var(--primary-color);
-    transition: all 0.2s ease-in-out;
+    color: white;
+    transition: 0.2s ease-in-out;
 }
 
 .modal button:hover {
     background: var(--button-hover);
-    transform: scale(1.05);
 }
 
 .modal button:active {
     background: var(--button-active);
-    transform: scale(0.98);
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-    z-index: 999;
 }
